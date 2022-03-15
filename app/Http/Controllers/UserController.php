@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 //requestクラス使用のため
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRegisterRequest;
 
-class AuthController extends Controller
+class Userontroller extends Controller
 {
     //
     public function index(){
-        return view('index');
+        return view('user.index');
     }
     
-    public function login(Request $request){
-        $validatedData = $request->validated();
+    public function register(Request $request){
+        $datum = $request->validated();
         var_dump($validatedData);exit;
     }
 }
