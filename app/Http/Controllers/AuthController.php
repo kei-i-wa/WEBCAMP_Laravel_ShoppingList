@@ -12,8 +12,17 @@ class AuthController extends Controller
         return view('index');
     }
     
-    public function login(Request $request){
-        $validatedData = $request->validated();
-        var_dump($validatedData);exit;
+   public function register(UserRegisterPost $request)
+    {
+        $datum = $request->validated();
+        $datum['password'] = Hash::make($datum['password']);
+        try{
+            $r= UserModel::create($datum);
+            $request->session()->flash('front.user_register_success',true);
+        }catch(\Throwable $e){
+            // echo $e->getMessage();
+            $request->session()->flash('front.user_register_failure', true);
+        }
+        return redirect('/');
     }
 }
