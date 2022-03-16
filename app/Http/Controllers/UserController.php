@@ -25,6 +25,6 @@ class UserController extends Controller
             echo $e->getMessage();exit;
         }
         $request->session()->flash('front.user_register_success',true);
-        return redirect('/task/list');
+        return redirect('/');
     }
 }

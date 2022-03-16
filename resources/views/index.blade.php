@@ -10,8 +10,9 @@
         @endforeach
     </div>
 @endif
-
-
+@if(session('front.user_register_success')==true)
+    会員登録をしました。<br>
+@endif
     <h1>ログイン</h1>
     <form action="/login" method="post">
         @csrf
