@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 //authクラス利用のため
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginPostRequest;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -26,7 +27,7 @@ class AuthController extends Controller
         return redirect()->intended('shopping_list/list');
     }
     
-    public function logout(){
+    public function logout(Request $request){
         Auth::logout();
         //CSRFトークンの再生成
         $request->session()->regenerateToken();
@@ -34,17 +35,4 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect(route('front.index'));
     }
-//   public function register(UserRegisterPost $request)
-//     {
-//         $datum = $request->validated();
-//         $datum['password'] = Hash::make($datum['password']);
-//         try{
-//             $r= UserModel::create($datum);
-//             $request->session()->flash('front.user_register_success',true);
-//         }catch(\Throwable $e){
-//             // echo $e->getMessage();
-//             $request->session()->flash('front.user_register_failure', true);
-//         }
-//         return redirect('/');
-//     }
 }

@@ -18,13 +18,15 @@ class UserController extends Controller
     
     public function register(UserRegisterRequest $request){
         $datum = $request->validated();
+        $datum['password']= Hash::make($datum['password']);
         try{
             $r = UserModel::create($datum);
-            // var_dump($r); exit;
+             $request->session()->flash('front.user_register_success',true);
+            
         }catch(\Throwable $e){
             echo $e->getMessage();exit;
+            $request->session()->flash('front.user_register_failure', true);
         }
-        $request->session()->flash('front.user_register_success',true);
-        return redirect(route('front.index'));
+        return redirect('/');
     }
 }
