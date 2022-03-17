@@ -32,7 +32,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         //セッションIDの再生成
         $request->session()->regenerate();
-        return redirect('/');
+        return redirect(route('front.index'));
     }
 //   public function register(UserRegisterPost $request)
 //     {

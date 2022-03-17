@@ -22,15 +22,16 @@ use App\Http\Controllers\UserController;
 // });
 //ログイン
 
-Route::get('/',[AuthController::class,'index']);
+Route::get('/',[AuthController::class,'index'])->name('front.index');
 Route::post('/login',[AuthController::class,'login']);
 //新規会員登録
 // Route::middleware(['auth'])->group(function(){
     
 // })
-Route::get('user/register',[UserController::class,'index']);
-Route::post('user/register',[UserController::class,'register']);
+Route::get('/user/register',[UserController::class,'index']);
+Route::post('/user/register',[UserController::class,'register']);
 Route::get('/shoppinglist/list',[ShoppingListController::class,'list']);
 Route::get('/logout',[AuthController::class,'logout']);
 
-Route::get('shopping_list/list',[ShoppingListController::class,'list']);
+Route::get('/shopping_list/list',[ShoppingListController::class,'list']);
+Route::post('/shopping_list/register',[ShoppingListController::class,'register']);

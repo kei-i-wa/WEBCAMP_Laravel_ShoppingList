@@ -20,11 +20,11 @@ class UserController extends Controller
         $datum = $request->validated();
         try{
             $r = UserModel::create($datum);
-            var_dump($r); exit;
+            // var_dump($r); exit;
         }catch(\Throwable $e){
             echo $e->getMessage();exit;
         }
         $request->session()->flash('front.user_register_success',true);
-        return redirect('/');
+        return redirect(route('front.index'));
     }
 }
