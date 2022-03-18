@@ -25,12 +25,18 @@ use App\Http\Controllers\UserController;
 Route::get('/',[AuthController::class,'index'])->name('front.index');
 Route::post('/login',[AuthController::class,'login']);
 //新規会員登録
-Route::middleware(['auth'])->group(function(){
-    Route::get('/shopping_list/list',[ShoppingListController::class,'list']);
-    Route::post('/shopping_list/register',[ShoppingListController::class,'register']);
-    Route::get('/logout',[AuthController::class,'logout']);
-});
 Route::get('/user/register',[UserController::class,'index']);
 Route::post('/user/register',[UserController::class,'register']);
+//買い物リスト
+Route::middleware(['auth'])->group(function(){
+    Route::prefix('shopping_list')->group(function(){
+            Route::get('/list',[ShoppingListController::class,'list']);
+            Route::post('/register',[ShoppingListController::class,'register']);
+            Route::delete('/delete/{shopping_list_id}',[ShoppingListController::class,'delete'])->whereNumber('shopping_list_id')->name('delete');
+            Route::post('/complete/{shopping_list_id}', [ShoppingListController::class, 'complete'])->whereNumber('shopping_list_id')->name('complete');
+    });
+    Route::get('/logout',[AuthController::class,'logout']);
+});
+
 
 
