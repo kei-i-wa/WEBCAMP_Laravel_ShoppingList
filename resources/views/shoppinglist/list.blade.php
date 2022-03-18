@@ -10,8 +10,11 @@
         @endforeach
     </div>
 @endif
+@if(session('front.shoppinglist_register_success')===true)
+    買うものリストに追加しました。<br>
+@endif
     <h1>買い物リスト</h1>
-    <form action="shopping_list/register" method="post">
+    <form action="./register" method="post">
         @csrf
         「買うもの」名：<input name="name" value="{{ old('name') }}"><br>
         <button>登録する</button><br>

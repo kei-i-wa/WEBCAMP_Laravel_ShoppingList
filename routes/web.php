@@ -28,8 +28,9 @@ Route::post('/login',[AuthController::class,'login']);
 Route::middleware(['auth'])->group(function(){
     Route::get('/shopping_list/list',[ShoppingListController::class,'list']);
     Route::post('/shopping_list/register',[ShoppingListController::class,'register']);
+    Route::get('/logout',[AuthController::class,'logout']);
 });
 Route::get('/user/register',[UserController::class,'index']);
 Route::post('/user/register',[UserController::class,'register']);
-Route::get('/logout',[AuthController::class,'logout']);
+
 
