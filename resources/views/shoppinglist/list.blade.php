@@ -13,6 +13,9 @@
 @if(session('front.shoppinglist_register_success')===true)
     買うものリストに追加しました。<br>
 @endif
+@if(session('front.shopping_list_delete_success')===true)
+    削除しました。
+@endif
     <h1>買い物リストへ追加</h1>
     <form action="./register" method="post">
         @csrf
@@ -32,11 +35,14 @@
         <tr>
             <td>{{ $shopping->created_at }}</td>
             <td>{{ $shopping->name }}</td>
-            <td>完了</td>
-            <form action="{{ route('delete',['shopping_list_id'=>$shopping->id]) }}" method ="post">
+            <td><form action="{{ route('complete',['shopping_list_id'=>$shopping->id])}}"method ="post">
+                @csrf<button onclick='return confirm("「完了」にします。よろしいですか？");'>完了</button>
+            </form></td>
+            <td><form action="{{ route('delete',['shopping_list_id'=>$shopping->id]) }}" method ="post">
                 @csrf
-                @method("DELETE")
-            <td><button onclick='return confirm("削除します。よろしいですか？");'>削除</button></td>
+                @method('DELETE')
+            <button onclick='return confirm("削除します。よろしいですか？");'>削除</button>
+            </form></td>
         </tr>
         @endforeach
     </table>
