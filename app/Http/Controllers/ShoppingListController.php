@@ -12,7 +12,13 @@ class ShoppingListController extends Controller
     //
     public function list(){
         //shoppinglistフォルダ内にあるlist.blade.phpを表示させる
-        return view('shoppinglist.list');
+        //ページネーション
+        $per_page=2;
+        //一覧の取得
+        $list = ShoppingListModel::where('user_id',Auth::id())
+                                ->orderBy('name','DESC')
+                                ->paginate($per_page);
+        return view('shoppinglist.list',['list'=>$list]);
     }
     
     public function register(ShoppingListRegisterPostRequest $request){
