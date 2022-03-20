@@ -7,6 +7,7 @@ use App\Http\Requests\ShoppingListRegisterPostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ShoppingLists as ShoppingListModel;
 use Illuminate\Support\Facades\DB;
+use App\Models\Completed_Shopping_List as CompletedModel;
 
 class ShoppingListController extends Controller
 {
@@ -60,16 +61,29 @@ class ShoppingListController extends Controller
         return redirect('shopping_list/list');
     }
     
-    public function complete(){
+    public function complete(Request $request,$shopping_list_id){
         try{
             DB::beginTransaction();
             $shopping_list=$this->getShoppingListModel($shopping_list_id);
             if($shopping_list===null){
                 throw new \Exception('');
             }
+            //買い物リストからは削除する
+            $shopping_list->delete();
+            //var_dump($shopping_list->toArray()); exit;
+            $shop_datum = $shopping_list->toArray();
+            unset($shop_datum['created_at']);
+            unset($shop_datum['updated_at']);
+            $r = CompletedModel::create($shop_datum);
+            if($r===null){
+                throw new \Exception('');
+            }
             Db::commit();
+            $request->session()->flash('front.shopping_list_completed_success',true);
         }catch(\Throwable $e){
+            var_dump($e->getMessage()); exit;
             DB::rollBack();
+            $request->session()->flash('front.shopping_list_completed_failure',true);
         }
         return redirect('shopping_list/list');
     }

@@ -16,6 +16,13 @@
 @if(session('front.shopping_list_delete_success')===true)
     削除しました。
 @endif
+@if(session('front.shopping_list_completed_success')===true)
+    買い物完了にしました。
+@endif
+@if(session('front.shopping_list_completed_failure')===true)
+    買い物の完了処理に失敗しました。
+@endif
+
     <h1>買い物リストへ追加</h1>
     <form action="./register" method="post">
         @csrf
@@ -24,6 +31,7 @@
     </form>
     
     <h1>買い物リスト</h1>
+    <a href="../completed_shopping_list/list">購入済みリスト</a>
     <table border="1">
         <tr>
             <th>登録日</th>
