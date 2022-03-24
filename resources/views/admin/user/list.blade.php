@@ -10,14 +10,14 @@
             <th>ユーザー名</th>
             <th>購入した「買うもの」数</th>
         </tr>
-        @foreach($list as $shopping)
+       @foreach($list as $user)
         <tr>
-            <td>{{ $shopping->user_id }}</td>
-            <td>{{ $shopping->user_id.name }}</td>
-            <td>{{ $shopping->name.length }}</td>
+            <td>{{ $user->id }}</td>
+            <td>{{ $user->name }}</td>
+            <td>カウント</td>
         </tr>
         @endforeach
-    </table>
+    </table>*/
         <!-- ページネーション -->
         現在 {{ $list->currentPage() }} ページ目<br>
         @if ($list->onFirstPage() === false)
