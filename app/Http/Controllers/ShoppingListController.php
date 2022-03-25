@@ -7,7 +7,7 @@ use App\Http\Requests\ShoppingListRegisterPostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ShoppingLists as ShoppingListModel;
 use Illuminate\Support\Facades\DB;
-use App\Models\Completed_Shopping_List as CompletedModel;
+use App\Models\CompletedShoppingList as CompletedModel;
 
 class ShoppingListController extends Controller
 {
