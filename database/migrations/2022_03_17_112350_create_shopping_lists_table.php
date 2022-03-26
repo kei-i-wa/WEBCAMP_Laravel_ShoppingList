@@ -18,7 +18,7 @@ class CreateShoppingListsTable extends Migration
             $table->string('name',255)->comment('買うもの名');
             $table->unsignedBigInteger('user_id')->comment('買い物リストの所有者');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->dateTime('created_at')->useCurrent();
+            $table->date('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
             // $table->timestamps();
         });

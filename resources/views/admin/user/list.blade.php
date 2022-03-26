@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('title')@endsection
 
@@ -14,32 +14,8 @@
         <tr>
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
-            <td>カウント</td>
+            <td>{{ $user->completed_shopping_lists_count}}</td>
         </tr>
         @endforeach
-    </table>*/
-        <!-- ページネーション -->
-        現在 {{ $list->currentPage() }} ページ目<br>
-        @if ($list->onFirstPage() === false)
-        <a href="/shopping_list/list">最初のページ</a>
-        @else
-        最初のページ
-        @endif
-        /
-        @if ($list->previousPageUrl() !== null)
-            <a href="{{ $list->previousPageUrl() }}"><<</a>
-        @else
-            <<
-        @endif
-        /
-        @if ($list->nextPageUrl() !== null)
-            <a href="{{ $list->nextPageUrl() }}">>></a>
-        @else
-            >>
-        @endif
-        <br>
-        <hr>
-    
-    
-    <a href="/logout">ログアウト</a>
+    </table>
 @endsection

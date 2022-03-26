@@ -15,6 +15,7 @@ class CompletedController extends Controller
         //一覧の取得
         $list = CompletedModel::where('user_id',Auth::id())
                                 ->orderBy('name','DESC')
+                                ->orderBy('created_at','ASC')
                                 ->paginate($per_page);
         return view('shoppinglist.completed_list',['list'=>$list]);
     }

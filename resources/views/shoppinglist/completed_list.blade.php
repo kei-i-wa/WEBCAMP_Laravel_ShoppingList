@@ -3,18 +3,18 @@
 @section('title')@endsection
 
 @section('contents')
-    <h1>購入済みリスト</h1>
+    <h1>購入済み一覧</h1>
     <br>
-    <a href="../shopping_list/list">買い物リストへ戻る</a>
+    <a href="../shopping_list/list">「買うもの」一覧へ戻る</a>
     <table border="1">
         <tr>
-            <th>買うもの</th>
+            <th>「買うもの」名</th>
             <th>購入日</th>
         </tr>
         @foreach($list as $shopping)
         <tr>
             <td>{{ $shopping->name }}</td>
-            <td>{{ $shopping->created_at }}</td>
+            <td>{{ date('Y年m月d日',strtotime($shopping->created_at)) }}</td>
         </tr>
         @endforeach
     </table>

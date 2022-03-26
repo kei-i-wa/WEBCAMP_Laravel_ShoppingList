@@ -10,9 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-   //public function posts(){
-     //   return $this->hasMany(CompletedShoppingList::class);
-    //}
+   public function completed_shopping_lists(){
+        return $this->hasMany('App\Models\CompletedShoppingList');
+}
     
     use HasApiTokens, HasFactory, Notifiable;
 
